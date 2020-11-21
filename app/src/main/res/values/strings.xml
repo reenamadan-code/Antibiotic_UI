@@ -93,4 +93,6 @@
     <string name="action_settings">Settings</string>
     <string name="title_frontpage_list">Items</string>
     <string name="title_frontpage_detail">Frontpage Detail</string>
+    <string name="com_auth0_client_id">AcbTk1X5q8V7uEMrAC2SoEpDEy55esXX</string>
+    <string name="com_auth0_domain">dev-q554jsev.us.auth0.com</string>
 </resources>

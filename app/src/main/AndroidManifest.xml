@@ -22,7 +22,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.testgage.FrontpageListActivity" />
         </activity>
-        <activity android:name=".MainActivity2" />
+        <activity android:name=".HRMonitorActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
