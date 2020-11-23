@@ -33,19 +33,19 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextNumber"
+        android:id="@+id/heartRateField"
         android:layout_width="216dp"
         android:layout_height="60dp"
         android:layout_marginEnd="94dp"
         android:layout_marginStart="101dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="10dp"
         android:ems="10"
         android:hint="heart rate"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTime" />
+        app:layout_constraintTop_toBottomOf="@+id/metricTime" />
 
     <ImageView
         android:id="@+id/imageView3"
@@ -54,10 +54,12 @@
         android:layout_marginEnd="126dp"
         android:layout_marginStart="120dp"
         android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNumber"
+        app:layout_constraintTop_toBottomOf="@+id/heartRateField"
+        app:layout_constraintVertical_bias="0.064"
         app:srcCompat="@drawable/heartrateopen" />
 
     <Button
@@ -81,36 +83,6 @@
         app:layout_constraintTop_toTopOf="@+id/prevButton"
         app:layout_constraintVertical_bias="0.0" />
 
-    <EditText
-        android:id="@+id/editTextDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="101dp"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="64dp"
-        android:ems="10"
-        android:hint="Date"
-        android:inputType="date"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
-
-    <EditText
-        android:id="@+id/editTextTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="97dp"
-        android:layout_marginStart="104dp"
-        android:layout_marginTop="28dp"
-        android:ems="10"
-        android:hint="time"
-        android:inputType="time"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextDate" />
-
     <Button
         android:id="@+id/logOutButton"
         android:layout_width="wrap_content"
@@ -130,29 +102,25 @@
         android:id="@+id/genderField"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="21dp"
-        android:layout_marginEnd="50dp"
         android:layout_marginStart="120dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="25dp"
         android:text="Gender"
-        app:layout_constraintBottom_toTopOf="@+id/editTextNumber"
-        app:layout_constraintEnd_toStartOf="@+id/ageField"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTime" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmail" />
 
     <TextView
         android:id="@+id/ageField"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="21dp"
         android:layout_marginEnd="126dp"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="25dp"
         android:text="Age"
-        app:layout_constraintBottom_toTopOf="@+id/editTextNumber"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/genderField"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTime" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmail" />
 
     <Button
         android:id="@+id/historicButton"
@@ -168,5 +136,21 @@
         app:layout_constraintStart_toEndOf="@+id/logOutButton"
         app:layout_constraintTop_toBottomOf="@+id/nextButton"
         app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
+        android:id="@+id/metricTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="14dp"
+        android:layout_marginEnd="102dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="150dp"
+        android:ems="10"
+        android:hint="time"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/heartRateField"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmail" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

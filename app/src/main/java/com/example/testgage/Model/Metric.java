@@ -1,27 +1,16 @@
 package com.example.testgage.Model;
 
-import java.util.Date;
-
 public class Metric {
-    String email;
-    String deviceId;
+    String metricId;
     String datetime;
     String heart_rate;
 
-    public String get_email() {
-        return email;
+    public String get_metricId() {
+        return metricId;
     }
 
-    public void set_email(String email) {
-        this.email = email;
-    }
-
-    public String get_device_id() {
-        return deviceId;
-    }
-
-    public void set_device_id(String deviceId) {
-        this.deviceId = deviceId;
+    public void set_metricId(String email) {
+        this.metricId = email;
     }
 
     public String get_heart_rate() {
