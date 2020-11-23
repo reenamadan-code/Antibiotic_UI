@@ -4,6 +4,10 @@ public class User {
     String email;
     String first_name;
     String last_name;
+    String gender;
+    String age;
+    String deviceId;
+
 
     public String get_email() {
         return email;
@@ -27,5 +31,29 @@ public class User {
 
     public void set_last_name(String last_name) {
         this.last_name = last_name;
+    }
+
+    public String get_gender() {
+        return gender;
+    }
+
+    public void set_gender(String gender) {
+        this.gender = gender;
+    }
+
+    public String get_age() {
+        return age;
+    }
+
+    public void set_age(String age) {
+        this.age = age;
+    }
+
+    public String get_deviceId() {
+        return deviceId;
+    }
+
+    public void set_deviceId(String deviceId) {
+        this.deviceId = deviceId;
     }
 }

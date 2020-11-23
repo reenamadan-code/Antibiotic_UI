@@ -1,6 +1,7 @@
 package com.example.testgage;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 
@@ -29,7 +30,6 @@ import com.auth0.android.result.Credentials;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String API_IDENTIFIER = "https://vu2zleiyhc.execute-api.us-west-1.amazonaws.com/dev";
     public static final String EXTRA_CLEAR_CREDENTIALS = "com.auth0.CLEAR_CREDENTIALS";
     public static final String EXTRA_ACCESS_TOKEN = "com.auth0.ACCESS_TOKEN";
     public static final String EXTRA_ID_TOKEN = "com.auth0.ID_TOKEN";
@@ -94,51 +94,55 @@ public class MainActivity extends AppCompatActivity {
     private void login() {
         WebAuthProvider.login(auth0)
             .withScheme("demo")
-            .withScope("openid profile email offline_access read:current_user read:metric read:user")
-//            .withAudience(API_IDENTIFIER)
+            .withScope("openid profile email offline_access read:current_user")
             .withAudience(String.format("https://%s/api/v2/", getString(R.string.com_auth0_domain)))
-            .start(MainActivity.this, new AuthCallback() {
-                @Override
-                public void onFailure(@NonNull Dialog dialog) {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            dialog.show();
-                        }
-                    });
-                }
-
-                @Override
-                public void onFailure(AuthenticationException exception) {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(MainActivity.this, "Error: " + exception.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                }
-
-                @Override
-                public void onSuccess(@NonNull Credentials credentials) {
-                    credentialsManager.saveCredentials(credentials);
-                    showNextActivity();
-                }
-            });
+            .start(MainActivity.this, loginCallback);
     }
+
 
     private void logout() {
         WebAuthProvider.logout(auth0)
                 .withScheme("demo")
-                .start(this, new VoidCallback() {
-                    @Override
-                    public void onSuccess(Void payload) {
-                        credentialsManager.clearCredentials();
-                    }
-
-                    @Override
-                    public void onFailure(Auth0Exception error) {
-                        showNextActivity();
-                    }
-                });
+                .start(this, logoutCallback);
     }
+
+    private AuthCallback loginCallback = new AuthCallback() {
+        @Override
+        public void onFailure(@NonNull Dialog dialog) {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    dialog.show();
+                }
+            });
+        }
+
+        @Override
+        public void onFailure(@NonNull AuthenticationException exception) {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(MainActivity.this, "Error: " + exception.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+
+        @Override
+        public void onSuccess(@NonNull Credentials credentials) {
+            credentialsManager.saveCredentials(credentials);
+            showNextActivity();
+        }
+    };
+
+    private VoidCallback logoutCallback = new VoidCallback() {
+        @Override
+        public void onSuccess(@Nullable Void payload) {
+            credentialsManager.clearCredentials();
+        }
+
+        @Override
+        public void onFailure(@NonNull Auth0Exception error) {
+            showNextActivity();
+        }
+    };
 }
