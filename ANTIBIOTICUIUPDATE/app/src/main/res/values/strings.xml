@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">Reena2</string>
+    <string name="login_info">
+        Login using your google account and \n
+        Auth0 will provide an secure Token to \n
+        view your heart rate.
+    </string>
+    <string name="welcome_info2">
+
+        This application is designed to monitor your heart rate and store in the cloud for your health care provider to track your
+        heart health and provide proactive advice.\n\n
+
+        Please go to the next page to register and login your information. Your heart rate device will have an unique, please post that in the window \n\n
+
+        This is a secure application providing multi-factor authentication for you to able to log your metrics
+
+    </string>
+    <string name="welcome_to_antiobiotic">Welcome to\nAntibiotic</string>
+    <string name="let_s_start">Let\'s Start</string>
+    <string name="login">Login</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="token">Token</string>
+    <string name="submit">Submit</string>
+    <string name="paired_device_id">Paired Device ID</string>
+    <string name="heart_rate">Heart Rate</string>
+    <string name="date">Date</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="age">Age</string>
+    <string name="gender">Gender</string>
+    <string name="get_date">Get Date</string>
+    <string name="get_heart_rate">Get Heart Rate</string>
+    <string name="register">Register</string>
+</resources>
