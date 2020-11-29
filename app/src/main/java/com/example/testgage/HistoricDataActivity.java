@@ -39,7 +39,7 @@ public class HistoricDataActivity extends AppCompatActivity {
         findViewById(R.id.buttonSubmitTokenPairedDeviceID).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(HistoricDataActivity.this,ReadMetrics.class));
+                startActivity(new Intent(HistoricDataActivity.this, ReadMetricsActivity.class));
             }
         });
 

@@ -21,14 +21,26 @@
 
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/buttonSubmitToken"
+        android:id="@+id/regSubmitButton"
         style="@style/btnStyle"
         android:layout_width="0dp"
         android:layout_height="@dimen/btn_height"
-        android:layout_marginBottom="30dp"
+        android:text="@string/submit"
+        app:layout_constraintBottom_toTopOf="@+id/regCancelButton"
+        app:layout_constraintEnd_toEndOf="@+id/regCancelButton"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/regCancelButton" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/regCancelButton"
+        style="@style/btnStyle"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/btn_height"
+        android:layout_marginBottom="20dp"
         android:layout_marginEnd="24dp"
         android:layout_marginStart="24dp"
-        android:text="@string/submit"
+        android:text="Cancel"
+        app:backgroundTint="#E91E63"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

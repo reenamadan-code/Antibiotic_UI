@@ -25,6 +25,7 @@
                 android:value="com.example.testgage.FrontpageListActivity" />
         </activity>
         <activity android:name=".HRMonitorActivity" />
+        <activity android:name=".ReadMetricsActivity" />
         <activity android:name=".ProfileRegisterActivity" />
         <activity android:name=".WelcomeActivity" >
             <intent-filter>

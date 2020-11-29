@@ -3,26 +3,42 @@ package com.example.testgage;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.testgage.Model.User;
+import com.example.testgage.Network.AntibioticAPIUtils;
 import com.google.android.material.textfield.TextInputEditText;
 
-import java.util.Calendar;
-
 public class ProfileRegisterActivity extends AppCompatActivity {
+    private String accessToken;
+    private String user_email;
 
-    private TextInputEditText textInputEditTextDate;
-    private final Calendar calendar = Calendar.getInstance();
-    private final String DATE_FORMAT = "dd MMM YYY";
+    private TextInputEditText firstName;
+    private TextInputEditText lastName;
+    private TextInputEditText age;
+    private TextInputEditText gender;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_new);
+
+        //Obtain the token from the Intent's extras
+        accessToken = getIntent().getStringExtra(MainActivity.EXTRA_ACCESS_TOKEN);
+        user_email = getIntent().getStringExtra("USER_EMAIL");
+
+        firstName = findViewById(R.id.tietFirstName);
+        lastName = findViewById(R.id.tietLastName);
+        age = findViewById(R.id.tietAge);
+        gender = findViewById(R.id.tietGender);
 
         Toolbar toolbar = findViewById(R.id.toolbarTokenLogin);
         toolbar.setTitle("Complete Profile Registration");
@@ -30,38 +46,27 @@ public class ProfileRegisterActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-//        textInputEditTextDate = findViewById(R.id.tietDate);
-
-        findViewById(R.id.buttonSubmitToken).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.regSubmitButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(ProfileRegisterActivity.this, HistoricDataActivity.class));
+                String first_Name = firstName.getText().toString();
+                String last_Name = lastName.getText().toString();
+                String genderInput = gender.getText().toString();
+                String ageInput = age.getText().toString();
+
+                createUser(user_email, first_Name, last_Name, genderInput, ageInput, accessToken);
             }
         });
 
-
-//        textInputEditTextDate.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//                DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
-//
-//                    @Override
-//                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-//                        calendar.set(Calendar.YEAR, year);
-//                        calendar.set(Calendar.MONTH, monthOfYear);
-//                        calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-//                        String date = new SimpleDateFormat(DATE_FORMAT, Locale.US).format(calendar.getTime());
-//                        textInputEditTextDate.setText(date);
-//                    }
-//
-//                };
-//
-//                DatePickerDialog datePickerDialog = new DatePickerDialog(ProfileRegisterActivity.this, date, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
-//                datePickerDialog.show();
-//
-//            }
-//        });
+        findViewById(R.id.regCancelButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ProfileRegisterActivity.this, LoginActivity.class);
+                intent.putExtra(MainActivity.EXTRA_CLEAR_CREDENTIALS, true);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
     @Override
@@ -70,5 +75,30 @@ public class ProfileRegisterActivity extends AppCompatActivity {
             finish();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void createUser(String email, String first_name, String last_name, String gender, String age,  String token) {
+        User user = new User();
+        user.set_email(email);
+        user.set_first_name(first_name);
+        user.set_last_name(last_name);
+        user.set_age(age);
+        user.set_gender(gender);
+
+        AntibioticAPIUtils.getAPIService().createUser(user, "Bearer " + token).enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                Log.i("[INFO] createUser", response.toString());
+                Intent intent = new Intent(ProfileRegisterActivity.this, ReadMetricsActivity.class);
+                intent.putExtra(MainActivity.EXTRA_ACCESS_TOKEN, accessToken);
+                startActivity(intent);
+                finish();
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                Log.e("[ERROR] CreateUser", t.toString());
+            }
+        });
     }
 }
