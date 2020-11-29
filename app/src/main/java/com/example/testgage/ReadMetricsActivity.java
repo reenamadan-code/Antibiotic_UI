@@ -57,6 +57,7 @@ public class ReadMetricsActivity extends AppCompatActivity {
 
         //Obtain the token from the Intent's extras
         accessToken = getIntent().getStringExtra(MainActivity.EXTRA_ACCESS_TOKEN);
+        Log.i("[INFO]", accessToken);
 
         firstNameField = findViewById(R.id.metricFNField);
         lastNameField = findViewById(R.id.metricLNField);
