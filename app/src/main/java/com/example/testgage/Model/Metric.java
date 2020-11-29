@@ -1,27 +1,19 @@
 package com.example.testgage.Model;
-
-import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 
 public class Metric {
-    String email;
-    String deviceId;
+    String metricId;
     String datetime;
     String heart_rate;
 
-    public String get_email() {
-        return email;
+    public String get_metricId() {
+        return metricId;
     }
 
-    public void set_email(String email) {
-        this.email = email;
-    }
-
-    public String get_device_id() {
-        return deviceId;
-    }
-
-    public void set_device_id(String deviceId) {
-        this.deviceId = deviceId;
+    public void set_metricId(String metricId) {
+        this.metricId = metricId;
     }
 
     public String get_heart_rate() {
@@ -38,5 +30,11 @@ public class Metric {
 
     public void set_datetime(String datetime) {
         this.datetime = datetime;
+    }
+
+    public String toString() {
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss", Locale.US);
+        return String.format("Time: %S Heart Rate: %S", this.datetime, this.heart_rate);
     }
 }

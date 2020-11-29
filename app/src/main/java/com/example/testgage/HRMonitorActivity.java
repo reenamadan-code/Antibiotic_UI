@@ -23,18 +23,23 @@ import com.auth0.android.callback.BaseCallback;
 import com.auth0.android.management.ManagementException;
 import com.auth0.android.management.UsersAPIClient;
 import com.auth0.android.result.UserProfile;
+import com.example.testgage.Model.Metric;
 import com.example.testgage.Model.User;
 import com.example.testgage.Network.AntibioticAPIUtils;
 import com.example.testgage.Network.AntibioticCallbacks;
+import java.util.List;
 
 public class HRMonitorActivity extends AppCompatActivity {
     private AuthenticationAPIClient authenticationAPIClient;
     private UsersAPIClient usersClient;
     private UserProfile userProfile;
     private String accessToken;
+    private String deviceId;
 
     private EditText personName;
     private EditText email;
+    private EditText metricTime;
+    private EditText heart_rate;
     private TextView gender;
     private TextView age;
 
@@ -47,6 +52,8 @@ public class HRMonitorActivity extends AppCompatActivity {
         email = findViewById(R.id.editTextTextEmail);
         age = findViewById(R.id.ageField);
         gender = findViewById(R.id.genderField);
+        metricTime = findViewById(R.id.metricTime);
+        heart_rate = findViewById(R.id.heartRateField);
 
         Button logout = findViewById(R.id.logOutButton);
         logout.setOnClickListener(new View.OnClickListener() {
@@ -60,10 +67,10 @@ public class HRMonitorActivity extends AppCompatActivity {
         historic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(HRMonitorActivity.this, RegisterActivity.class);
+                Intent intent = new Intent(HRMonitorActivity.this, HistoricActivity.class);
                 intent.putExtra(MainActivity.EXTRA_ACCESS_TOKEN, accessToken);
                 intent.putExtra("USER_EMAIL", userProfile.getEmail());
-//                intent.putExtra("DEVICE_ID", userProfile.getEmail());
+                intent.putExtra("DEVICE_ID", deviceId);
                 startActivity(intent);
                 finish();
             }
@@ -98,6 +105,10 @@ public class HRMonitorActivity extends AppCompatActivity {
                     personName.setText(name);
                     gender.setText(data.split("-")[2]);
                     age.setText(data.split("-")[3]);
+                    deviceId = data.split("-")[4];
+
+                    String metricId = String.format("%s-%s", deviceId, userProfile.getEmail());
+                    getMetric(metricId, accessToken);
                 } else {
                     Intent intent = new Intent(HRMonitorActivity.this, RegisterActivity.class);
                     intent.putExtra(MainActivity.EXTRA_ACCESS_TOKEN, accessToken);
@@ -113,7 +124,6 @@ public class HRMonitorActivity extends AppCompatActivity {
             }
         });
     }
-
 
     private void getProfile(String accessToken) {
         authenticationAPIClient.userInfo(accessToken)
@@ -155,7 +165,7 @@ public class HRMonitorActivity extends AppCompatActivity {
     }
 
     private void getUser(String email, String token, @Nullable final AntibioticCallbacks callbacks) {
-        AntibioticAPIUtils.getAPIService().loadUser(email, "Bearer " + token).enqueue(new Callback<User>() {
+        AntibioticAPIUtils.getAPIService().getUser(email, "Bearer " + token).enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 if (response.isSuccessful()) {
@@ -163,7 +173,7 @@ public class HRMonitorActivity extends AppCompatActivity {
 
                     if (callbacks != null) {
                         Log.i("INFO", "getUser" + user.toString());
-                        callbacks.onSuccess(String.format("%s-%s-%s-%s", user.get_first_name(), user.get_last_name(), user.get_age(), user.get_gender()));
+                        callbacks.onSuccess(String.format("%s-%s-%s-%s-%S", user.get_first_name(), user.get_last_name(), user.get_age(), user.get_gender(), user.get_deviceId()));
                     }
                 } else {
                     if (callbacks != null) {
@@ -176,6 +186,30 @@ public class HRMonitorActivity extends AppCompatActivity {
             public void onFailure(Call<User> call, Throwable t) {
                 if (callbacks != null)
                     callbacks.onError(t);
+            }
+        });
+    }
+
+    private void getMetric(String metricId, String token) {
+        AntibioticAPIUtils.getAPIService().getMetrics(metricId, null, null, "Bearer " + token).enqueue(new Callback<List<Metric>>() {
+            @Override
+            public void onResponse(Call<List<Metric>> call, Response<List<Metric>> response) {
+                if (response.isSuccessful()) {
+                    List<Metric> metrics = response.body();
+
+                    for (Metric metric : metrics) {
+                        metricTime.setText(metric.get_datetime());
+                        heart_rate.setText(metric.get_heart_rate());
+                    }
+                } else {
+                    metricTime.setText("No data available");
+                    heart_rate.setText("No data available");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Metric>> call, Throwable t) {
+
             }
         });
     }

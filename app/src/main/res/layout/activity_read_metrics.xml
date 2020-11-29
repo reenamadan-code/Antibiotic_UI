@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bluewhite3"
+    android:textAlignment="center"
+    tools:context=".ReadMetricsActivity">
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/metricHistoricDataButton"
+        style="@style/btnStyle"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="20dp"
+        android:text="Historic Data"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/metricDate"
+        app:layout_constraintStart_toStartOf="@+id/metricDate" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/metricLogoutButton"
+        style="@style/btnStyle"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="20dp"
+        android:text="Logout"
+        app:backgroundTint="#E91E63"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/metricHR"
+        app:layout_constraintStart_toStartOf="@+id/metricHR" />
+
+    <RelativeLayout
+        android:id="@+id/relative_layout1"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="24dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarHome">
+
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/heartrateopen" />
+
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/metricDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="@string/date"
+        android:textColor="@color/black"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/metricGender"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="@+id/metricGender"
+        app:layout_constraintTop_toBottomOf="@+id/metricGender" />
+
+    <TextView
+        android:id="@+id/metricHR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/heart_rate"
+        android:textColor="@color/black"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/metricDate"
+        app:layout_constraintEnd_toEndOf="@+id/metricAge"
+        app:layout_constraintStart_toStartOf="@+id/metricAge"
+        app:layout_constraintTop_toTopOf="@+id/metricDate"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/metricDateField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/purple_500"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="@+id/metricDate"
+        app:layout_constraintStart_toStartOf="@+id/metricDate"
+        app:layout_constraintTop_toBottomOf="@+id/metricDate" />
+
+    <TextView
+        android:id="@+id/metricHRField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/purple_500"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="@+id/metricDateField"
+        app:layout_constraintEnd_toEndOf="@+id/metricHR"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/metricHR"
+        app:layout_constraintTop_toBottomOf="@+id/metricHR" />
+
+    <include
+        android:id="@+id/toolbarHome"
+        layout="@layout/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/metricFirstName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="35dp"
+        android:text="@string/first_name"
+        android:textColor="@color/black"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/metricFNField"
+        app:layout_constraintEnd_toStartOf="@+id/metricLastName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relative_layout1" />
+
+    <TextView
+        android:id="@+id/metricGender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="@string/gender"
+        android:textColor="@color/black"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/metricEmail"
+        app:layout_constraintHorizontal_bias="0.45"
+        app:layout_constraintStart_toStartOf="@+id/metricEmail"
+        app:layout_constraintTop_toBottomOf="@+id/metricEmail" />
+
+    <TextView
+        android:id="@+id/metricAge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:text="@string/age"
+        android:textColor="@color/black"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/metricGender"
+        app:layout_constraintEnd_toEndOf="@+id/metricLastName"
+        app:layout_constraintStart_toStartOf="@+id/metricLastName"
+        app:layout_constraintTop_toTopOf="@+id/metricGender"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/metricEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="@string/email"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/metricFirstName"
+        app:layout_constraintStart_toStartOf="@+id/metricFirstName"
+        app:layout_constraintTop_toBottomOf="@+id/metricFirstName" />
+
+    <TextView
+        android:id="@+id/metricLastName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="50dp"
+        android:layout_marginStart="40dp"
+        android:text="@string/last_name"
+        android:textColor="@color/black"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/metricFirstName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/metricFirstName"
+        app:layout_constraintTop_toTopOf="@+id/metricFirstName" />
+
+    <TextView
+        android:id="@+id/metricFNField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/purple_500"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="@+id/metricFirstName"
+        app:layout_constraintStart_toStartOf="@+id/metricFirstName"
+        app:layout_constraintTop_toBottomOf="@+id/metricFirstName" />
+
+    <TextView
+        android:id="@+id/metricLNField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/purple_500"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="@+id/metricFNField"
+        app:layout_constraintEnd_toEndOf="@+id/metricLastName"
+        app:layout_constraintStart_toStartOf="@+id/metricLastName"
+        app:layout_constraintTop_toBottomOf="@+id/metricLastName" />
+
+    <TextView
+        android:id="@+id/metricEmailField"
+        android:layout_width="340dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/purple_500"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="@+id/metricEmail"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintStart_toStartOf="@+id/metricEmail"
+        app:layout_constraintTop_toBottomOf="@+id/metricEmail" />
+
+    <TextView
+        android:id="@+id/metricGenderField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/purple_500"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="@+id/metricGender"
+        app:layout_constraintStart_toStartOf="@+id/metricGender"
+        app:layout_constraintTop_toBottomOf="@+id/metricGender" />
+
+    <TextView
+        android:id="@+id/metricAgeField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/purple_500"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="@+id/metricGenderField"
+        app:layout_constraintEnd_toEndOf="@+id/metricAge"
+        app:layout_constraintStart_toStartOf="@+id/metricAge"
+        app:layout_constraintTop_toBottomOf="@+id/metricAge" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
