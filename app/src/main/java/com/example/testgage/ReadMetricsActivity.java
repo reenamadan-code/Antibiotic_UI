@@ -28,9 +28,14 @@ import com.example.testgage.Model.User;
 import com.example.testgage.Network.AntibioticAPIUtils;
 import com.example.testgage.Network.AntibioticCallbacks;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class ReadMetricsActivity extends AppCompatActivity {
+    private final String DATE_FORMAT = "dd MMM yyyy";
+
     private AuthenticationAPIClient authenticationAPIClient;
     private UsersAPIClient usersClient;
     private UserProfile userProfile;
@@ -219,7 +224,8 @@ public class ReadMetricsActivity extends AppCompatActivity {
                     List<Metric> metrics = response.body();
 
                     for (Metric metric : metrics) {
-                        dateField.setText(metric.get_datetime());
+                        String date = new SimpleDateFormat(DATE_FORMAT, Locale.US).format(new Date(Long.parseLong(metric.get_datetime())));
+                        dateField.setText(date);
                         heartRateField.setText(metric.get_heart_rate());
                     }
 

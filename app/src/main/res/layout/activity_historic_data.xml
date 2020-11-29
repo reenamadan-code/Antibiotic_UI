@@ -23,33 +23,33 @@
         android:id="@+id/textView12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="FROM : "
+        android:text="TO :"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/textInputLayoutParedDeviceID"
+        app:layout_constraintBottom_toBottomOf="@+id/textInputLayoutToDate"
         app:layout_constraintStart_toStartOf="@+id/textView11"
-        app:layout_constraintTop_toTopOf="@+id/textInputLayoutParedDeviceID" />
+        app:layout_constraintTop_toTopOf="@+id/textInputLayoutToDate" />
 
     <TextView
         android:id="@+id/textView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:text="TO : "
+        android:text="FROM :"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/textInputLayoutEmailDeviceId"
+        app:layout_constraintBottom_toBottomOf="@+id/textInputLayoutFromDate"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textInputLayoutEmailDeviceId" />
+        app:layout_constraintTop_toTopOf="@+id/textInputLayoutFromDate" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/buttonSubmitTokenPairedDeviceID"
+        android:id="@+id/historicDataSubmit"
         style="@style/btnStyle"
         android:layout_width="0dp"
         android:layout_height="@dimen/btn_height"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="20dp"
         android:layout_marginEnd="24dp"
         android:layout_marginStart="24dp"
         android:text="@string/submit"
@@ -58,17 +58,16 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayoutEmailDeviceId"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:layout_marginTop="32dp"
+        android:id="@+id/textInputLayoutFromDate"
+        android:layout_width="261dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="25dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/textInputLayoutParedDeviceID"
+        app:layout_constraintStart_toStartOf="@+id/textInputLayoutToDate"
         app:layout_constraintTop_toBottomOf="@+id/imageView5">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tietEmailDeviceId"
+            android:id="@+id/tietFromDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clickable="true"
@@ -84,18 +83,17 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayoutParedDeviceID"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
+        android:id="@+id/textInputLayoutToDate"
+        android:layout_width="259dp"
+        android:layout_height="62dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView12"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutEmailDeviceId">
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutFromDate">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tietParedDeviceID"
+            android:id="@+id/tietToDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clickable="true"
@@ -118,5 +116,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ListView
+        android:id="@+id/historicListView"
+        android:layout_width="411dp"
+        android:layout_height="213dp"
+        app:layout_constraintBottom_toTopOf="@+id/historicDataSubmit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutToDate" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

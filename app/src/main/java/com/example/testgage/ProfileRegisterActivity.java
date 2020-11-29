@@ -72,6 +72,9 @@ public class ProfileRegisterActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
+            Intent intent = new Intent(ProfileRegisterActivity.this, LoginActivity.class);
+            intent.putExtra(MainActivity.EXTRA_CLEAR_CREDENTIALS, true);
+            startActivity(intent);
             finish();
         }
         return super.onOptionsItemSelected(item);

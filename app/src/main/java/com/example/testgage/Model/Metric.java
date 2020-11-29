@@ -1,4 +1,7 @@
 package com.example.testgage.Model;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 
 public class Metric {
     String metricId;
@@ -9,8 +12,8 @@ public class Metric {
         return metricId;
     }
 
-    public void set_metricId(String email) {
-        this.metricId = email;
+    public void set_metricId(String metricId) {
+        this.metricId = metricId;
     }
 
     public String get_heart_rate() {
@@ -27,5 +30,11 @@ public class Metric {
 
     public void set_datetime(String datetime) {
         this.datetime = datetime;
+    }
+
+    public String toString() {
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss", Locale.US);
+        return String.format("Time: %S Heart Rate: %S", this.datetime, this.heart_rate);
     }
 }
